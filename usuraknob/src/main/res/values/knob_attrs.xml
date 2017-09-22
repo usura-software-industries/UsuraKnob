@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<declare-styleable name="KnobView">
+		<attr name="minAngle" format="integer" />
+		<attr name="maxAngle" format="integer" />
+		<attr name="startingAngle" format="integer" />
+		<attr name="knobSrc" format="reference" />
+	</declare-styleable>
+</resources>

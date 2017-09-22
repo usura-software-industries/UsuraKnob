@@ -1,0 +1,20 @@
+<resources>
+	<string name="app_name">UsuraKnob</string>
+
+	<string name="introduction_and_featuers">
+		This is naturally rotating knob view library that aims to be a replacement for standard slider.
+		\n\nIt supports:
+		\n\n\u2022 Animating knob rotation
+		\n\u2022 Snapping with vibration for natural feel
+		\n\u2022 Customizable double tap and long press actions
+		\n\u2022 Loads of customisation
+	</string>
+
+	<string name="snap_mode_no_snap">NO SNAP</string>
+	<string name="snap_mode_snap_and_vibrate">SNAP &amp; VIBRATE</string>
+	<string name="animate_min">ANIMATE TO MIN</string>
+	<string name="animate_max">ANIMATE TO MAX</string>
+	<string name="contact_us">Contact us:</string>
+	<string name="website_address">www.usura.pro</string>
+
+</resources>

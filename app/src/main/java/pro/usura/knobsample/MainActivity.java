@@ -21,7 +21,7 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 public class MainActivity extends AppCompatActivity {
 
 	@BindView(R.id.knob)
-	protected KnobView knob;
+	protected KnobView knobView;
 	@BindView(R.id.knob_percentage_tv)
 	protected TextView percentageTV;
 	@BindView(R.id.toggle_snap_mode)
@@ -40,26 +40,42 @@ public class MainActivity extends AppCompatActivity {
 
 		setPercentageText();
 
-		knob.setListener(new KnobListener() {
+		knobView.setListener(new KnobListener() {
 			@Override
 			public void onAngleChanged(float angle) {
 				setPercentageText();
 			}
 		});
 
-		Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
 		noSnap = new NoSnapEngine();
-		vibratingSnap = new VibratingSnapEngine(vibrator, 360 / 20, 20);
+
+		int snapByDegrees = 20;
+		int fullCircle = 360;
+		int vibrationTimeMS = 20;
+		Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+		vibratingSnap = new VibratingSnapEngine(vibrator, fullCircle / snapByDegrees, vibrationTimeMS);
+
+//		KnobCommand customCommand = new KnobCommand() {
+//
+//			@Override
+//			public void execute(boolean isEnabled) {
+//				//do your stuff here
+//			}
+//		};
+//
+//		knobView.setDoubleTapCommand(customCommand);
+//
+//		knobView.setLongPressCommand(null);
 	}
 
 	@OnClick(R.id.animate_min)
 	protected void animateToMin() {
-		knob.animateTo(knob.getMinAngle());
+		knobView.animateTo(knobView.getMinAngle());
 	}
 
 	@OnClick(R.id.animate_max)
 	protected void animateToMax() {
-		knob.animateTo(knob.getMaxAngle());
+		knobView.animateTo(knobView.getMaxAngle());
 	}
 
 	@OnClick(R.id.toggle_snap_mode)
@@ -74,13 +90,13 @@ public class MainActivity extends AppCompatActivity {
 	}
 
 	private void setPercentageText() {
-		float normalized = knob.getNormalizedValue();
+		float normalized = knobView.getNormalizedValue();
 		int percentage = (int) (normalized * 100f);
 		percentageTV.setText(percentage + "%");
 	}
 
 	private void setSnapping(boolean shouldSnap) {
-		knob.setSnapEngine(shouldSnap ? vibratingSnap : noSnap);
+		knobView.setSnapEngine(shouldSnap ? vibratingSnap : noSnap);
 		snapToggle.setText(shouldSnap ? R.string.snap_mode_snap_and_vibrate : R.string.snap_mode_no_snap);
 	}
 

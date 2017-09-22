@@ -1,6 +1,8 @@
 # UsuraKnob
 Knob control that aims to replace standard android slider. With style.
 
+<img src="https://github.com/usura-software-industries/UsuraKnob/blob/master/demos/usuraknob-demo.gif?" width=350>
+
 ### XML declaration
 ```xml
 <pro.usura.usuraknob.KnobView

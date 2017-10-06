@@ -7,6 +7,7 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
+import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.annotation.AttrRes;
 import android.support.annotation.NonNull;
@@ -318,18 +319,27 @@ public class KnobView extends View implements GestureDetector.OnGestureListener 
 
 	@Override
 	public Parcelable onSaveInstanceState() {
-		Parcelable superState = super.onSaveInstanceState();
-		KnobState knobState = new KnobState(superState);
+		Bundle bundle = new Bundle();
+		bundle.putParcelable(KnobState.SUPER_KEY, super.onSaveInstanceState());
+
+		KnobState knobState = new KnobState();
 		knobState.save(this);
-		return knobState;
+		bundle.putParcelable(KnobState.STATE_KEY, knobState);
+		return bundle;
 	}
 
 	@Override
 	public void onRestoreInstanceState(Parcelable state) {
-		KnobState knobState = (KnobState) state;
-		super.onRestoreInstanceState(knobState.getSuperState());
-		knobState.restore(this);
+		if (state instanceof Bundle) {
+			Bundle bundle = (Bundle) state;
+
+			state = bundle.getParcelable(KnobState.SUPER_KEY);
+			KnobState knobState = bundle.getParcelable(KnobState.STATE_KEY);
+			knobState.restore(this);
+		}
+		super.onRestoreInstanceState(state);
 	}
+
 	public KnobListener getListener() {
 		return listener;
 	}

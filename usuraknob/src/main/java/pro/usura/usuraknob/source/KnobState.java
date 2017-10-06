@@ -1,16 +1,19 @@
 package pro.usura.usuraknob.source;
 
-import android.annotation.TargetApi;
-import android.os.Build;
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.view.View;
 
 import pro.usura.usuraknob.KnobView;
 
-public class KnobState extends View.BaseSavedState {
+public class KnobState implements Parcelable {
+
+	public final static String SUPER_KEY = "superStateKey";
+	public final static String STATE_KEY = "stateKey";
 
 	private float minAngle = 0, maxAngle = 0, startingAngle = 0, currentAngle = 0;
+
+	public KnobState() {
+	}
 
 	public void save(KnobView knobView) {
 		minAngle = knobView.getMinAngle();
@@ -26,17 +29,7 @@ public class KnobState extends View.BaseSavedState {
 		knobView.setRotorAngle(currentAngle);
 	}
 
-	@TargetApi(Build.VERSION_CODES.N)
-	public KnobState(Parcel source, ClassLoader loader) {
-		super(source, loader);
-	}
-
-	public KnobState(Parcelable superState) {
-		super(superState);
-	}
-
 	protected KnobState(Parcel in) {
-		super(in);
 		minAngle = in.readFloat();
 		maxAngle = in.readFloat();
 		startingAngle = in.readFloat();

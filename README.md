@@ -17,7 +17,7 @@ allprojects {
 #### and to your app gradle
 ```gradle
 dependencies {
-  compile 'com.github.usura-software-industries:UsuraKnob:0.1'
+  compile 'com.github.usura-software-industries:UsuraKnob:0.1.1'
 }
 ```
 

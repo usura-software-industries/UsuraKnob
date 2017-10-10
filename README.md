@@ -35,7 +35,7 @@ dependencies {
 
 It will always be square and does support weights.
 
-### Code and customisation
+### Code and customization
 
 #### Animating
 
@@ -50,7 +50,7 @@ can change this behavior by implementing your own knob aniamtor
 
 #### Long press and double tap actions
 
-Knob supports long press and double tap gestures. By defualt those will be togglling enabled/disabled state and reseting knob to starting value. Actions can be customised by implementing and setting KnobCommand or disabled by setting null.
+Knob supports long press and double tap gestures. By defualt those will be togglling enabled/disabled state and reseting knob to starting value. Actions can be customized by implementing and setting KnobCommand or disabled by setting null.
 
 ```java
  KnobCommand customCommand = new KnobCommand() {
